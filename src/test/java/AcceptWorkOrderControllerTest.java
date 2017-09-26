@@ -1,5 +1,6 @@
 import com.Application;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -46,6 +47,21 @@ public class AcceptWorkOrderControllerTest {
 
     }
 
+    @After
+    public void tearDown() throws Exception{
+
+        HttpEntity<Map> removeEntity = new HttpEntity<Map>(removeWorkRequestTOQueueRequestMap, headers);
+        ResponseEntity<String> removeResponse = restTemplate.exchange(
+                createURLWithPort("/remove"),
+                HttpMethod.POST, removeEntity, String.class);
+
+        HttpEntity<Map> topEntity = new HttpEntity<Map>(null, headers);
+
+        ResponseEntity<String> topResponse = restTemplate.exchange(
+                createURLWithPort("/top"),
+                HttpMethod.GET, topEntity, String.class);
+
+    }
     @Test
     public void testToAddWorkRequestToQueue() throws Exception {
         HttpEntity<Map> entity = new HttpEntity<Map>(addWorkRequestTOQueueRequestMap, headers);
@@ -68,7 +84,7 @@ public class AcceptWorkOrderControllerTest {
                 createURLWithPort("/add"),
                 HttpMethod.POST, entity, String.class);
 
-        HttpEntity<Map> addTopentity = new HttpEntity<Map>(topWorkRequestTOQueueRequestMap, headers);
+        HttpEntity<Map> addTopentity = new HttpEntity<Map>(addWorkRequestTOQueueRequestMap, headers);
 
         ResponseEntity<String> addTopResponse = restTemplate.exchange(
                 createURLWithPort("/add"),
@@ -84,6 +100,8 @@ public class AcceptWorkOrderControllerTest {
         String expectedSaveDataResponse = "{\"requesterId\":15,\"requestDate\":1505625256000,\"IDClass\":\"Management\"}";
 
         Assert.assertEquals(expectedSaveDataResponse, topResponse.getBody());
+
+
     }
 
     @Test
