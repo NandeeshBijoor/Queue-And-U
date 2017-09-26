@@ -7,6 +7,8 @@ Build
 
 	Build Tool: Maven
 	Version:  3.3.9
+	Java: 1.8.x
+	Spring Boot version : 1.4.0.RELEASE
 	Build Command: mvn clean compile package
 	Package Name: QueueAndU-1.0.0-SNAPSHOT.jar
 
