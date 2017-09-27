@@ -1,8 +1,5 @@
 # Queue-And-U-
 
-
-Project Name: QueueAndU#
-
 Build
 
 	Build Tool: Maven
