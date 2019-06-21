@@ -1,4 +1,4 @@
-# Queue-And-U-
+# Queue-And-U
 
 Build
 
